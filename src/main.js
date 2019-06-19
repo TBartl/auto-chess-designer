@@ -13,13 +13,15 @@ import Races from "@/components/Races";
 Vue.config.productionTip = false;
 
 const routes = [
-  { path: "/classes", component: Classes },
   { path: "/pieces", component: Pieces },
-  { path: "/races", component: Races }
+  { path: "/classes", component: Classes },
+  { path: "/races", component: Races },
+  { path: "*", redirect: "/pieces" }
 ];
 
 const router = new VueRouter({
   mode: "history",
+  base: "/auto-chess-designer/",
   routes
 });
 

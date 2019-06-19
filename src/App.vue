@@ -4,7 +4,7 @@
       <div class="container d-flex justify-content-between align-items-center">
         <img src="./assets/logo.svg">
         <div>
-          <a v-for="(route, index) in routes" :key="index" :href="'/' + route">{{route | capitalize}}</a>
+          <router-link v-for="(route, index) in routes" :key="index" :to="'/' + route">{{route | capitalize}}</router-link>
         </div>
         <div>
           <a href="javascript:void(0)">Import</a>
