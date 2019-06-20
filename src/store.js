@@ -11,7 +11,6 @@ var getters = {
   schema(state) {
     if (!state.schema) {
       state.schema = require("./defaultSchema.json");
-      console.log(state.schema);
     }
     return state.schema;
   }

@@ -3,11 +3,13 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-import Classes from "@/components/Classes";
-import Pieces from "@/components/Pieces";
-import Races from "@/components/Races";
+import Classes from "@/components/pages/Classes";
+import Pieces from "@/components/pages/Pieces";
+import Piece from "@/components/pages/Piece";
+import Races from "@/components/pages/Races";
 
 const routes = [
+  { path: "/piece/:name", component: Piece },
   { path: "/pieces", component: Pieces },
   { path: "/classes", component: Classes },
   { path: "/races", component: Races },
