@@ -20,6 +20,18 @@
   <defs
      id="defs2">
     <linearGradient
+       inkscape:collect="always"
+       id="linearGradient921">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop917" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0"
+         offset="1"
+         id="stop919" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient4624"
        inkscape:collect="always">
       <stop
@@ -64,6 +76,16 @@
        y2="153.08348"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1,0,0,0.48931107,0,82.577721)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient921"
+       id="linearGradient915"
+       x1="-22.97587"
+       y1="-52.885311"
+       x2="333.06784"
+       y2="311.65805"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.26458333,0,0,0.26458333,-58.666789,-201.08977)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -72,15 +94,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="530.11748"
-     inkscape:cy="-69.306965"
+     inkscape:zoom="2.8"
+     inkscape:cx="201.8259"
+     inkscape:cy="-93.567688"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -91,7 +113,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -245,5 +267,10 @@
          x="148.67871"
          y="-165.90305"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Tahoma;-inkscape-font-specification:Tahoma;fill:#ffffff;stroke-width:0.10784514">Races</tspan></text>
+    <path
+       style="opacity:1;vector-effect:none;fill:url(#linearGradient915);fill-opacity:1;stroke:none;stroke-width:5.05643368;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m -30.202378,-186.28757 v 6.66781 h -6.667809 v 5.50716 h 6.667809 v 6.6678 h 5.507157 v -6.6678 h 6.667293 v -5.50716 h -6.667293 v -6.66781 z"
+       id="rect854"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

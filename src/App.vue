@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view class="mt-4"></router-view>
   </div>
 </template>
 
@@ -33,16 +33,6 @@ export default {
   }
 };
 </script>
-
-<style>
-#app {
-  background-color: #202841;
-  font-family: "Tahoma", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-}
-</style>
 
 <style scoped>
 .header {

@@ -1,0 +1,25 @@
+#app {
+  background-color: #202841;
+  color: hsla(0, 0%, 100%, 0.9);
+  font-family: "Tahoma", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+p {
+  margin-bottom: 0;
+}
+
+.panel {
+  background: rgb(48, 54, 109);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+
+.inset-sub-panel {
+  background-color: #252C50;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1), inset 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+
+h3 {
+  margin-bottom: 0;
+}
