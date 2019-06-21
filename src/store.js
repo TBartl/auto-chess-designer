@@ -4,21 +4,11 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 var state = {
-  schema: undefined
-};
-
-var getters = {
-  schema(state) {
-    if (!state.schema) {
-      state.schema = require("./defaultSchema.json");
-    }
-    return state.schema;
-  }
+  schema: require("./defaultSchema.json")
 };
 
 const store = new Vuex.Store({
-  state,
-  getters
+  state
 });
 
 export default store;

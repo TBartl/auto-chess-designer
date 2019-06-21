@@ -8,7 +8,7 @@
         </div>
         <div>
           <a href="javascript:void(0)">Import</a>
-          <a class="mr-0" href="javascript:void(0)">Export</a>
+          <a @click="onExport()" class="mr-0" href="javascript:void(0)">Export</a>
         </div>
       </div>
     </div>
@@ -17,12 +17,26 @@
 </template>
 
 <script>
+import { saveAs } from "file-saver";
+import { mapState } from 'vuex';
 export default {
   name: "app",
   data() {
     return {
       routes: ["pieces", "classes", "races"]
     };
+  },
+  computed: {
+    ...mapState(["schema"]),
+  },
+  methods: {
+    onExport() {
+      console.log("Save");
+      var blob = new Blob([JSON.stringify(this.schema)], {
+        type: "text/plain;charset=utf-8"
+      });
+      saveAs(blob, "test.json");
+    }
   },
   filters: {
     capitalize(value) {
@@ -50,10 +64,10 @@ export default {
 .header a {
   color: white;
   text-decoration: none;
-  opacity: .6;
+  opacity: 0.6;
   font-size: 20px;
   margin: 0px 28px;
-  transition: opacity .1s;
+  transition: opacity 0.1s;
 }
 .header a:hover {
   opacity: 1;
