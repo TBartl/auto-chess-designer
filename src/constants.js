@@ -20,7 +20,7 @@ export default {
     },
     armor: {
       min: 0,
-      max: 15
+      max: 10
     },
     resist: {
       min: 0,
@@ -28,11 +28,11 @@ export default {
     },
     damage: {
       min: 60,
-      max: 120
+      max: 110
     },
     attackSpeed: {
-      min: 0.8,
-      max: 1.6
+      min: 1.6,
+      max: 0.8
     },
     range: {
       min: 1,

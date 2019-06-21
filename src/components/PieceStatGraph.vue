@@ -3,11 +3,10 @@
   <svg class="w-100" :viewBox="'0 0 ' + (radius * 2 +  padding * 2 + ' ').repeat(2)">
     <g class="w-100">
       <polygon :points="polygonPoints"></polygon>
-      <circle :cx="''+center" :cy="''+center" :r="''+radius*1/3"></circle>
-      <circle :cx="''+center" :cy="''+center" :r="''+radius*2/3"></circle>
+      <circle :cx="''+center" :cy="''+center" :r="''+radius/2"></circle>
       <circle :cx="''+center" :cy="''+center" :r="''+radius"></circle>
       <text v-for="(stat, index) in displayStats" :key="index" 
-        :x="''+stat.x" :y="''+stat.y" text-anchor="middle">{{stat.label}}</text>
+        :x="''+stat.xMax" :y="''+stat.yMax" text-anchor="middle">{{stat.label}}</text>
     </g>
   </svg>
 </div>
@@ -29,25 +28,27 @@ export default {
     },
     displayStats() {
       return CONSTANTS.statOrder.map((stat, index) => {
-        var x = 0;
-        var y = -this.radius;
+        var statRange = CONSTANTS.statRanges[stat];
+        var percent = (this.stats[stat] - statRange.min) / (statRange.max - statRange.min);
+
         var angle = Math.PI * 2 / CONSTANTS.statOrder.length * index;
-        var cos = Math.cos(angle);
-        var sin = Math.sin(angle);
-        var tx = x * cos - y * sin + this.center;
-        var ty = x * sin + y * cos + this.center;
+        var x = Math.sin(angle);
+        var y =  -Math.cos(angle);
+
         var label = stat.replace(/([A-Z])/g, " $1");
         label = label.charAt(0).toUpperCase() + label.slice(1);
         return {
-          x: tx,
-          y: ty,
+          xVal: x * percent * this.radius + this.center,
+          yVal: y * percent * this.radius + this.center,
+          xMax: x * this.radius + this.center,
+          yMax: y * this.radius + this.center,
           label
         };
       });
     },
     polygonPoints() {
       return this.displayStats.map(stat => {
-        return stat.x + "," + stat.y;
+        return stat.xVal + "," + stat.yVal;
       });
     }
   }
