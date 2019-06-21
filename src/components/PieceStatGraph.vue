@@ -5,6 +5,13 @@
       <polygon :points="polygonPoints"></polygon>
       <circle :cx="''+center" :cy="''+center" :r="''+radius/2"></circle>
       <circle :cx="''+center" :cy="''+center" :r="''+radius"></circle>
+      <line v-for="(stat, index) in displayStats" :key="'line'+index" 
+        :x1="''+center"
+        :y1="''+center"
+        :x2="''+stat.xMax"
+        :y2="''+stat.yMax"
+        stroke="#999"
+      />
       <text v-for="(stat, index) in displayStats" :key="index" 
         :x="''+stat.xMax" :y="''+stat.yMax" text-anchor="middle">{{stat.label}}</text>
     </g>
