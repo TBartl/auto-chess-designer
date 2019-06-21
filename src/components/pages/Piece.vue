@@ -51,7 +51,10 @@
       </div>
       <div class="col-md-9">
         <div class="panel p-3">
-          <p>Hey</p>
+          <div class="hover-reveal d-flex align-items-center">
+            <h4>{{abilityLabel}}</h4>
+            <span class="reveal" @click="onAddAbility">➕</span>
+          </div>
         </div>
       </div>
     </div>
@@ -64,6 +67,7 @@ import { mapState } from "vuex";
 import FieldText from "@/components/FieldText";
 import FieldNumerical from "@/components/FieldNumerical";
 import PieceStatGraph from "@/components/PieceStatGraph";
+import CONSTANTS from "@/constants";
 export default {
   components: { FieldText, FieldNumerical, PieceStatGraph },
   data() {
@@ -79,6 +83,17 @@ export default {
     ...mapState(["schema"]),
     piece() {
       return this.schema.pieces.find(piece => piece.id == this.id);
+    },
+    abilityLabel() {
+      var numAbilities = this.piece.abilities.length;
+      if (numAbilities == 0) return "No abilities";
+      if (numAbilities > 1) return "Abilities";
+      return "Ability";
+    }
+  },
+  methods: {
+    onAddAbility() {
+      this.piece.abilities.push(CONSTANTS.DEFAULT_ABILITY);
     }
   }
 };
@@ -95,5 +110,9 @@ export default {
 .field-label {
   margin-right: 8px;
   color: hsla(0, 0%, 100%, 0.5);
+}
+
+.power {
+  font-size: 24px;
 }
 </style>

@@ -7,7 +7,13 @@
   min-height: 100vh;
   font-size: 18px;
 }
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 0;
 }
 
@@ -22,8 +28,9 @@ a {
 }
 
 .inset-sub-panel {
-  background-color: #252C50;
-  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1), inset 0 15px 40px rgba(0, 0, 0, 0.05);
+  background-color: #252c50;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1),
+    inset 0 15px 40px rgba(0, 0, 0, 0.05);
 }
 
 .v--modal {
@@ -53,4 +60,18 @@ a {
 .field input {
   width: calc(100% - 16px);
   margin-right: 4px;
+}
+
+.reveal {
+  opacity: 0;
+  transition: opacity 0.1s;
+  cursor: pointer;
+}
+
+.hover-reveal:hover .reveal {
+  opacity: 0.6;
+}
+
+.reveal:hover {
+  opacity: 1 !important;
 }

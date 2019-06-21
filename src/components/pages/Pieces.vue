@@ -5,13 +5,13 @@
         <div class="panel p-3">
           <h3>Pieces</h3>
           <div class="inset-sub-panel mt-3 d-flex">
-            <div class=" m-2 piece position-relative" 
+            <div class=" m-2 piece position-relative hover-reveal" 
                 v-for="(piece, index) in schema.pieces" :key="index">
               <router-link :to="`/piece/${piece.name}`" class="d-flex align-items-center flex-column">
                 <img :src="piece.image" :alt="piece.name">
                 <p>{{piece.name}}</p>
               </router-link>
-              <div class="delete-piece" @click="deletePiece(piece)">❌</div>
+              <div class="delete-piece reveal" @click="deletePiece(piece)">❌</div>
             </div>
             <div v-if="canCreateNew" class=" m-2 piece create-piece d-flex flex-column align-items-center" @click="addPiece">
               <img src="@/assets/add-new.svg" alt="Add new">
@@ -84,15 +84,6 @@ export default {
   position: absolute;
   right: 1px;
   top: 1px;
-
-  opacity: 0;
-  transition: opacity 0.1s;
-}
-.piece:hover .delete-piece {
-  opacity: 0.6;
-}
-.delete-piece:hover {
-  opacity: 1 !important;
 }
 </style>
 

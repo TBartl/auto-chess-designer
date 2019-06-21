@@ -34,11 +34,11 @@ export default {
       return this.radius + this.padding;
     },
     displayStats() {
-      return CONSTANTS.statOrder.map((stat, index) => {
-        var statRange = CONSTANTS.statRanges[stat];
+      return CONSTANTS.STAT_ORDER.map((stat, index) => {
+        var statRange = CONSTANTS.STAT_RANGES[stat];
         var percent = (this.stats[stat] - statRange.min) / (statRange.max - statRange.min);
 
-        var angle = Math.PI * 2 / CONSTANTS.statOrder.length * index;
+        var angle = Math.PI * 2 / CONSTANTS.STAT_ORDER.length * index;
         var x = Math.sin(angle);
         var y =  -Math.cos(angle);
 

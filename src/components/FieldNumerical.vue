@@ -1,8 +1,8 @@
 <template>
-<div class="field">
+<div class="field hover-reveal">
   <span v-show="!focused">{{value}}</span>
   <input v-show="focused" v-model="value" @blur="onBlur" ref="fieldInput" @keyup.enter="onBlur" type="number">
-  <span @click="onPencil" class="pencil">✎</span>
+  <span @click="onPencil" class="pencil reveal">✎</span>
 </div>
 </template>
 
