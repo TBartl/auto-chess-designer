@@ -7,18 +7,20 @@
           <router-link v-for="(route, index) in routes" :key="index" :to="'/' + route">{{route | capitalize}}</router-link>
         </div>
         <div>
-          <a href="javascript:void(0)">Import</a>
+          <a @click="onImport()" href="javascript:void(0)">Import</a>
           <a @click="onExport()" class="mr-0" href="javascript:void(0)">Export</a>
         </div>
       </div>
     </div>
     <router-view class="mt-4"></router-view>
+    <modals-container></modals-container>
   </div>
 </template>
 
 <script>
 import { saveAs } from "file-saver";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
+import ImportModal from "@/components/ImportModal";
 export default {
   name: "app",
   data() {
@@ -27,15 +29,17 @@ export default {
     };
   },
   computed: {
-    ...mapState(["schema"]),
+    ...mapState(["schema"])
   },
   methods: {
     onExport() {
-      console.log("Save");
       var blob = new Blob([JSON.stringify(this.schema)], {
         type: "text/plain;charset=utf-8"
       });
       saveAs(blob, "test.json");
+    },
+    onImport() {
+      this.$modal.show(ImportModal, {}, { height: "auto" });
     }
   },
   filters: {

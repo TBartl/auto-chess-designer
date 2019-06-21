@@ -26,6 +26,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { generateUID } from "@/utils";
 import CONSTANTS from "@/constants";
 export default {
   computed: {
@@ -39,6 +40,7 @@ export default {
   methods: {
     addPiece() {
       var copiedPiece = JSON.parse(JSON.stringify(CONSTANTS.NEW_PIECE));
+      copiedPiece.id = generateUID();
       this.schema.pieces.push(copiedPiece);
     },
     deletePiece(piece) {
@@ -84,11 +86,11 @@ export default {
   top: 1px;
 
   opacity: 0;
-  transition: opacity .1s;
+  transition: opacity 0.1s;
 }
 .piece:hover .delete-piece {
-   opacity: .6;
- }
+  opacity: 0.6;
+}
 .delete-piece:hover {
   opacity: 1 !important;
 }

@@ -4,10 +4,49 @@
       <div class="col-md-3">
         <div class="panel p-3 d-flex flex-column align-items-center">
           <img class="piece-image mb-2" :src="piece.image" :alt="piece.name">
-          <h3>{{piece.name}}</h3>
+          <field-text class="piece-title" :obj="piece" model="name"></field-text>
+        </div>        
+        <div class="panel p-3 my-3">
+          <div class="d-flex align-items-center">
+            <span class="field-label">Cost:</span>
+            <field-numerical :obj="piece" model="cost"></field-numerical>
+          </div>
         </div>
         <div class="panel p-3 my-3 d-flex flex-column">
-          <h5>Stats</h5>
+          <h4 class="mb-1">Stats</h4>
+          
+          <div class="d-flex align-items-center">
+            <span class="field-label">Health:</span>
+            <field-numerical :obj="piece.stats" model="health"></field-numerical>
+          </div>
+          
+          <div class="d-flex align-items-center">
+            <span class="field-label">Armor:</span>
+            <field-numerical :obj="piece.stats" model="armor"></field-numerical>
+          </div>
+          
+          <div class="d-flex align-items-center">
+            <span class="field-label">Resist:</span>
+            <field-numerical :obj="piece.stats" model="resist"></field-numerical>
+          </div>
+          
+          <div class="d-flex align-items-center">
+            <span class="field-label">Damage:</span>
+            <field-numerical :obj="piece.stats" model="damage"></field-numerical>
+          </div>
+          
+          <div class="d-flex align-items-center">
+            <span class="field-label">Attack Speed:</span>
+            <field-numerical :obj="piece.stats" model="attackSpeed"></field-numerical>
+          </div>
+
+          <div class="d-flex align-items-center">
+            <span class="field-label">Range:</span>
+            <field-numerical :obj="piece.stats" model="range"></field-numerical>
+          </div>
+
+          <piece-stat-graph class="mt-3" :stats="piece.stats"></piece-stat-graph>
+
         </div>
       </div>
       <div class="col-md-9">
@@ -22,12 +61,24 @@
 
 <script>
 import { mapState } from "vuex";
+import FieldText from "@/components/FieldText";
+import FieldNumerical from "@/components/FieldNumerical";
+import PieceStatGraph from "@/components/PieceStatGraph";
 export default {
+  components: { FieldText, FieldNumerical, PieceStatGraph },
+  data() {
+    var name = this.$route.params.name;
+    var piece = this.$store.state.schema.pieces.find(
+      piece => piece.name == name
+    );
+    return {
+      id: piece.id
+    };
+  },
   computed: {
     ...mapState(["schema"]),
     piece() {
-      var name = this.$route.params.name;
-      return this.schema.pieces.find(piece => piece.name == name);
+      return this.schema.pieces.find(piece => piece.id == this.id);
     }
   }
 };
@@ -35,7 +86,14 @@ export default {
 
 <style scoped>
 .piece-image {
-  max-width: 220px;
+  width: 100%;
   border-radius: 50%;
+}
+.piece-title {
+  font-size: 24px;
+}
+.field-label {
+  margin-right: 8px;
+  color: hsla(0, 0%, 100%, 0.5);
 }
 </style>
