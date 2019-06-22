@@ -56,7 +56,11 @@
             <span class="reveal" @click="onAddAbility">➕</span>
           </div>
           <div v-for="(ability, index) in piece.abilities" :key="index" class="mt-2">
-            <field-text class="power-title" :obj="ability" model="name"></field-text>
+            
+            <div class="hover-reveal">
+              <field-text class="power-title d-inline-block" :obj="ability" model="name"></field-text>
+              <span class="reveal delete" @click="deleteAbility(ability)">❌</span>
+            </div>
             <field-text class="power-description" :obj="ability" model="description"></field-text>
             <div class="d-flex align-items-center">
               <span class="field-label">Cooldown:</span>
@@ -71,7 +75,10 @@
             <span class="reveal" @click="onAddClass">➕</span>
           </div>
           <div v-for="(clas, index) in piece.classes" :key="index" class="mt-2">
-            <field-select class="power-title" :options="schema.classes" :obj="piece.classes" :model="index"></field-select>
+            <div class="hover-reveal">
+              <field-select class="power-title d-inline" :options="schema.classes" :obj="piece.classes" :model="index"></field-select>
+              <span class="reveal delete" @click="deleteClass(clas)">❌</span>
+            </div>
             <p v-for="(bonus, index) in getBonuses(clas, 'class')" :key="index" class="bonus">
               {{bonus.text}}
             </p>
@@ -139,6 +146,12 @@ export default {
       var synergy = this.schema[type + "es"].find(c => c.id == id);
       if (!synergy) return [];
       return synergy.bonuses;
+    },
+    deleteAbility(ability) {
+      this.piece.abilities.splice(this.piece.abilities.indexOf(ability), 1);
+    },
+    deleteClass(clas) {
+      this.piece.classes.splice(this.piece.classes.indexOf(clas), 1);
     }
   }
 };
@@ -168,5 +181,10 @@ export default {
 .power-description {
   color: hsla(0, 0%, 100%, 0.7);
   display: block;
+}
+
+.delete {
+  position: relative;
+  right: -20px !important;
 }
 </style>
