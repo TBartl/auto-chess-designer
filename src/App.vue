@@ -25,7 +25,7 @@ export default {
   name: "app",
   data() {
     return {
-      routes: ["pieces", "classes", "races"]
+      routes: ["pieces", "classes"]
     };
   },
   computed: {

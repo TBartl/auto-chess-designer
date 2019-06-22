@@ -82,8 +82,10 @@
             <p v-for="(bonus, index) in getBonuses(classID, 'class')" :key="index" class="bonus">
               {{bonus.text}}
             </p>
-            <p class="related-text mt-1" v-if="getClassPieces(classID).length">Related</p>
-            <pieces-display :pieces="getClassPieces(classID)"/>
+            <div v-if="classID && getClassPieces(classID).length" >
+              <p class="related-text mt-1">Related</p>
+              <pieces-display :pieces="getClassPieces(classID)"/>
+            </div>
             <hr class="mb-1 mt-3" v-if="index != piece.classes.length - 1"/>
           </div>
         </div>
@@ -102,7 +104,13 @@ import PieceStatGraph from "@/components/PieceStatGraph";
 import PiecesDisplay from "@/components/PiecesDisplay";
 import CONSTANTS from "@/constants";
 export default {
-  components: { FieldText, FieldNumerical, FieldSelect, PieceStatGraph, PiecesDisplay },
+  components: {
+    FieldText,
+    FieldNumerical,
+    FieldSelect,
+    PieceStatGraph,
+    PiecesDisplay
+  },
   data() {
     var name = this.$route.params.name;
     var piece = this.$store.state.schema.pieces.find(
@@ -128,12 +136,6 @@ export default {
       if (numClasses == 0) return "No class";
       if (numClasses == 1) return "Class";
       return "Classes";
-    },
-    raceLabel() {
-      var numClasses = this.piece.races.length;
-      if (numClasses == 0) return "No race";
-      if (numClasses == 1) return "Race";
-      return "Races";
     }
   },
   methods: {
@@ -142,9 +144,6 @@ export default {
     },
     onAddClass() {
       this.piece.classes.push(undefined);
-    },
-    onAddRace() {
-      this.piece.races.push(undefined);
     },
     getBonuses(id, type) {
       var synergy = this.schema[type + "es"].find(c => c.id == id);
@@ -158,9 +157,9 @@ export default {
       this.piece.classes.splice(this.piece.classes.indexOf(clas), 1);
     },
     getClassPieces(classID) {
-      return this.schema.pieces.filter(piece =>
-        piece.classes.includes(classID)
-      );
+      return this.schema.pieces
+        .filter(piece => piece.classes.includes(classID))
+        .filter(piece => piece.id != this.id);
     }
   }
 };
@@ -198,7 +197,7 @@ export default {
 }
 
 .related-text {
-  color:hsla(0, 0%, 100%, .4);
+  color: hsla(0, 0%, 100%, 0.4);
   font-size: 16px;
   font-weight: bold;
 }
@@ -206,6 +205,6 @@ export default {
 hr {
   border: none;
   height: 3px;
-  background-color: hsla(0, 0%, 0%, .15);
+  background-color: hsla(0, 0%, 0%, 0.15);
 }
 </style>
