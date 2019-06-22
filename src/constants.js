@@ -1,6 +1,7 @@
 export default {
   NEW_PIECE: {
     name: "New Piece",
+    notes: "No notes",
     cost: 1,
     stats: {
       health: 750,

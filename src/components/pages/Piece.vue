@@ -89,6 +89,11 @@
             <hr class="mb-1 mt-3" v-if="index != piece.classes.length - 1"/>
           </div>
         </div>
+
+        <div class="panel p-3 mt-3">
+          <h4>Notes</h4>
+          <field-text class="notes" :obj="piece" model="notes"></field-text>
+        </div>
       </div>
     </div>
   </div>
@@ -208,5 +213,10 @@ hr {
   border: none;
   height: 3px;
   background-color: hsla(0, 0%, 0%, 0.15);
+}
+
+.notes {
+  margin-top: 6px;
+  color: hsla(0, 0%, 100%, 0.7);
 }
 </style>
