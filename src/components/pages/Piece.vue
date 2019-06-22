@@ -168,6 +168,8 @@ export default {
 <style scoped>
 .piece-image {
   width: 100%;
+  max-width: 256px;
+  max-height: 256px;
   border-radius: 50%;
 }
 .piece-title {

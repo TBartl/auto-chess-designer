@@ -6,7 +6,7 @@
         <div>
           <router-link v-for="(route, index) in routes" :key="index" :to="'/' + route">{{route | capitalize}}</router-link>
         </div>
-        <div>
+        <div class="d-none d-md-block">
           <a @click="onImport()" href="javascript:void(0)">Import</a>
           <a @click="onExport()" class="mr-0" href="javascript:void(0)">Export</a>
         </div>
