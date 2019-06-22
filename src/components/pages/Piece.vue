@@ -71,7 +71,10 @@
             <span class="reveal" @click="onAddClass">➕</span>
           </div>
           <div v-for="(clas, index) in piece.classes" :key="index" class="mt-2">
-            <!-- <field-text class="power-title" :obj="clas" model="class"></field-text> -->
+            <field-select class="power-title" :options="schema.classes" :obj="piece.classes" :model="index"></field-select>
+            <p v-for="(bonus, index) in getBonuses(clas, 'class')" :key="index" class="bonus">
+              {{bonus.text}}
+            </p>
           </div>
         </div>
       </div>
@@ -84,10 +87,11 @@
 import { mapState } from "vuex";
 import FieldText from "@/components/FieldText";
 import FieldNumerical from "@/components/FieldNumerical";
+import FieldSelect from "@/components/FieldSelect";
 import PieceStatGraph from "@/components/PieceStatGraph";
 import CONSTANTS from "@/constants";
 export default {
-  components: { FieldText, FieldNumerical, PieceStatGraph },
+  components: { FieldText, FieldNumerical, FieldSelect, PieceStatGraph },
   data() {
     var name = this.$route.params.name;
     var piece = this.$store.state.schema.pieces.find(
@@ -130,6 +134,11 @@ export default {
     },
     onAddRace() {
       this.piece.races.push(undefined);
+    },
+    getBonuses(id, type) {
+      var synergy = this.schema[type + "es"].find(c => c.id == id);
+      if (!synergy) return [];
+      return synergy.bonuses;
     }
   }
 };

@@ -21,7 +21,7 @@ export default {
     onPencil() {
       this.focused = true;
       this.$nextTick(() => {
-        this.$refs.fieldInput.focus();
+        if (this.$refs.fieldInput) this.$refs.fieldInput.focus();
       });
     },
     onBlur() {

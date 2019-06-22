@@ -85,7 +85,4 @@ export default {
   position: relative;
   right: -20px !important;
 }
-.bonus {
-  color: hsla(0, 0%, 100%, 0.8);
-}
 </style>

@@ -106,3 +106,7 @@ a {
 .create:hover img {
   opacity: 1;
 }
+
+.bonus {
+  color: hsla(0, 0%, 100%, 0.8);
+}
