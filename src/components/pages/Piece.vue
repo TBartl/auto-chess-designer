@@ -3,7 +3,13 @@
     <div class="row">
       <div class="col-md-3">
         <div class="panel p-3 d-flex flex-column align-items-center">
-          <img class="piece-image mb-2" :src="piece.image" :alt="piece.name">
+          <div class="position-relative piece-image-container mb-2" @click="uploadImage">
+            <div class="upload-image w-100 h-100 align-items-center flex-column position-absolute justify-content-center">
+              <h2>📁</h2>
+              <h5>Upload</h5>
+            </div>
+            <img class="piece-image" :src="piece.image" :alt="piece.name">
+          </div>
           <field-text class="piece-title" :obj="piece" model="name"></field-text>
         </div>        
         <div class="panel p-3 my-3">
@@ -107,6 +113,7 @@ import FieldNumerical from "@/components/FieldNumerical";
 import FieldSelect from "@/components/FieldSelect";
 import PieceStatGraph from "@/components/PieceStatGraph";
 import PiecesDisplay from "@/components/PiecesDisplay";
+import UploadImageModal from "@/components/UploadImageModal";
 import CONSTANTS from "@/constants";
 export default {
   components: {
@@ -143,7 +150,10 @@ export default {
       return "Synergies";
     },
     isDefaultStats() {
-      return JSON.stringify(this.piece.stats) == JSON.stringify(CONSTANTS.NEW_PIECE.stats);
+      return (
+        JSON.stringify(this.piece.stats) ==
+        JSON.stringify(CONSTANTS.NEW_PIECE.stats)
+      );
     }
   },
   methods: {
@@ -168,6 +178,13 @@ export default {
       return this.schema.pieces
         .filter(piece => piece.synergies.includes(synergyID))
         .filter(piece => piece.id != this.id);
+    },
+    uploadImage() {
+      this.$modal.show(
+        UploadImageModal,
+        { piece: this.piece },
+        { height: "auto" }
+      );
     }
   }
 };
@@ -224,8 +241,23 @@ hr {
 }
 
 .default-stat-warning {
-  color:hsla(0,75%,50%,0.6);
+  color: hsla(0, 75%, 50%, 0.6);
   text-align: center;
   font-size: 12px;
+}
+
+.upload-image {
+  display: none;
+  background: hsla(0, 0%, 0%, 0.75);
+  border-radius: 100%;
+}
+.piece-image-container:hover {
+  cursor: pointer;
+}
+.piece-image-container:hover .upload-image {
+  display: flex;
+}
+.piece-image-container:hover .upload-image {
+  display: flex;
 }
 </style>
