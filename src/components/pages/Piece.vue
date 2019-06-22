@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="panel p-3 my-3 d-flex flex-column">
-          <h4 class="mb-1">Stats</h4>
+          <h4 class="mb-1 d-inline-block">Stats</h4>
           
           <div class="d-flex align-items-center">
             <span class="field-label">Health:</span>
@@ -46,7 +46,7 @@
           </div>
 
           <piece-stat-graph class="mt-3" :stats="piece.stats"></piece-stat-graph>
-
+          <p v-if="isDefaultStats" class="default-stat-warning">! WARNING: DEFAULT STATS !</p>
         </div>
       </div>
       <div class="col-md-9">
@@ -141,6 +141,9 @@ export default {
       if (numClasses == 0) return "No class";
       if (numClasses == 1) return "Class";
       return "Classes";
+    },
+    isDefaultStats() {
+      return JSON.stringify(this.piece.stats) == JSON.stringify(CONSTANTS.NEW_PIECE.stats);
     }
   },
   methods: {
@@ -218,5 +221,11 @@ hr {
 .notes {
   margin-top: 6px;
   color: hsla(0, 0%, 100%, 0.7);
+}
+
+.default-stat-warning {
+  color:hsla(0,75%,50%,0.6);
+  text-align: center;
+  font-size: 12px;
 }
 </style>
