@@ -23,10 +23,7 @@
             <field-text class="bonus" :obj="clas.bonuses[index]" model="text"></field-text>
             <span class="reveal delete" @click="deleteBonus(clas, bonus)">❌</span>
           </div>
-
-          <div class="inset-sub-panel mt-3 d-flex">
-            TODO
-          </div>
+          <pieces-display class="mt-2" :pieces="getClassPieces(clas)"/>
         </div>
       </div>
     </div>
@@ -48,9 +45,10 @@
 import { mapState } from "vuex";
 import { generateUID } from "@/utils";
 import FieldText from "@/components/FieldText";
+import PiecesDisplay from "@/components/PiecesDisplay";
 import CONSTANTS from "@/constants";
 export default {
-  components: { FieldText },
+  components: { FieldText, PiecesDisplay },
   computed: {
     ...mapState(["schema"])
   },
@@ -68,6 +66,9 @@ export default {
     },
     deleteBonus(clas, bonus) {
       clas.bonuses.splice(clas.bonuses.indexOf(bonus), 1);
+    },
+    getClassPieces(clas) {
+      return this.schema.pieces.filter(piece => piece.classes.includes(clas.id));
     }
   }
 };

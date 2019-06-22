@@ -74,14 +74,17 @@
             <h4>{{classLabel}}</h4>
             <span class="reveal" @click="onAddClass">➕</span>
           </div>
-          <div v-for="(clas, index) in piece.classes" :key="index" class="mt-2">
+          <div v-for="(classID, index) in piece.classes" :key="index" class="mt-2">
             <div class="hover-reveal">
               <field-select class="power-title d-inline" :options="schema.classes" :obj="piece.classes" :model="index"></field-select>
-              <span class="reveal delete" @click="deleteClass(clas)">❌</span>
+              <span class="reveal delete" @click="deleteClass(classID)">❌</span>
             </div>
-            <p v-for="(bonus, index) in getBonuses(clas, 'class')" :key="index" class="bonus">
+            <p v-for="(bonus, index) in getBonuses(classID, 'class')" :key="index" class="bonus">
               {{bonus.text}}
             </p>
+            <p class="related-text mt-1" v-if="getClassPieces(classID).length">Related</p>
+            <pieces-display :pieces="getClassPieces(classID)"/>
+            <hr class="mb-1 mt-3" v-if="index != piece.classes.length - 1"/>
           </div>
         </div>
       </div>
@@ -96,9 +99,10 @@ import FieldText from "@/components/FieldText";
 import FieldNumerical from "@/components/FieldNumerical";
 import FieldSelect from "@/components/FieldSelect";
 import PieceStatGraph from "@/components/PieceStatGraph";
+import PiecesDisplay from "@/components/PiecesDisplay";
 import CONSTANTS from "@/constants";
 export default {
-  components: { FieldText, FieldNumerical, FieldSelect, PieceStatGraph },
+  components: { FieldText, FieldNumerical, FieldSelect, PieceStatGraph, PiecesDisplay },
   data() {
     var name = this.$route.params.name;
     var piece = this.$store.state.schema.pieces.find(
@@ -152,6 +156,11 @@ export default {
     },
     deleteClass(clas) {
       this.piece.classes.splice(this.piece.classes.indexOf(clas), 1);
+    },
+    getClassPieces(classID) {
+      return this.schema.pieces.filter(piece =>
+        piece.classes.includes(classID)
+      );
     }
   }
 };
@@ -186,5 +195,17 @@ export default {
 .delete {
   position: relative;
   right: -20px !important;
+}
+
+.related-text {
+  color:hsla(0, 0%, 100%, .4);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+hr {
+  border: none;
+  height: 3px;
+  background-color: hsla(0, 0%, 0%, .15);
 }
 </style>
