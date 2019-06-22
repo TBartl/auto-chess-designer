@@ -71,22 +71,22 @@
 
         <div class="panel p-3 mt-3">
           <div class="hover-reveal d-flex align-items-center">
-            <h4>{{classLabel}}</h4>
-            <span class="reveal" @click="onAddClass">➕</span>
+            <h4>{{synergyLabel}}</h4>
+            <span class="reveal" @click="onAddSynergy">➕</span>
           </div>
-          <div v-for="(classID, index) in piece.classes" :key="index" class="mt-2">
+          <div v-for="(synergyID, index) in piece.synergies" :key="index" class="mt-2">
             <div class="hover-reveal">
-              <field-select class="power-title d-inline" :options="schema.classes" :obj="piece.classes" :model="index"></field-select>
-              <span class="reveal delete" @click="deleteClass(classID)">❌</span>
+              <field-select class="power-title d-inline" :options="schema.synergies" :obj="piece.synergies" :model="index"></field-select>
+              <span class="reveal delete" @click="deleteSynergy(synergyID)">❌</span>
             </div>
-            <p v-for="(bonus, index) in getBonuses(classID, 'class')" :key="index" class="bonus">
+            <p v-for="(bonus, index) in getBonuses(synergyID)" :key="index" class="bonus">
               {{bonus.text}}
             </p>
-            <div v-if="classID && getClassPieces(classID).length" >
+            <div v-if="synergyID && getSynergyPieces(synergyID).length" >
               <p class="related-text mt-1">Related</p>
-              <pieces-display :pieces="getClassPieces(classID)"/>
+              <pieces-display :pieces="getSynergyPieces(synergyID)"/>
             </div>
-            <hr class="mb-1 mt-3" v-if="index != piece.classes.length - 1"/>
+            <hr class="mb-1 mt-3" v-if="index != piece.synergies.length - 1"/>
           </div>
         </div>
 
@@ -136,11 +136,11 @@ export default {
       if (numAbilities == 1) return "Ability";
       return "Abilities";
     },
-    classLabel() {
-      var numClasses = this.piece.classes.length;
-      if (numClasses == 0) return "No class";
-      if (numClasses == 1) return "Class";
-      return "Classes";
+    synergyLabel() {
+      var numSynergies = this.piece.synergies.length;
+      if (numSynergies == 0) return "No synergies";
+      if (numSynergies == 1) return "Synergy";
+      return "Synergies";
     },
     isDefaultStats() {
       return JSON.stringify(this.piece.stats) == JSON.stringify(CONSTANTS.NEW_PIECE.stats);
@@ -150,23 +150,23 @@ export default {
     onAddAbility() {
       this.piece.abilities.push(CONSTANTS.NEW_ABILITY);
     },
-    onAddClass() {
-      this.piece.classes.push(undefined);
+    onAddSynergy() {
+      this.piece.synergies.push(undefined);
     },
-    getBonuses(id, type) {
-      var synergy = this.schema[type + "es"].find(c => c.id == id);
+    getBonuses(id) {
+      var synergy = this.schema.synergies.find(c => c.id == id);
       if (!synergy) return [];
       return synergy.bonuses;
     },
     deleteAbility(ability) {
       this.piece.abilities.splice(this.piece.abilities.indexOf(ability), 1);
     },
-    deleteClass(clas) {
-      this.piece.classes.splice(this.piece.classes.indexOf(clas), 1);
+    deleteSynergy(synergy) {
+      this.piece.synergies.splice(this.piece.synergies.indexOf(synergy), 1);
     },
-    getClassPieces(classID) {
+    getSynergyPieces(synergyID) {
       return this.schema.pieces
-        .filter(piece => piece.classes.includes(classID))
+        .filter(piece => piece.synergies.includes(synergyID))
         .filter(piece => piece.id != this.id);
     }
   }
