@@ -43,9 +43,20 @@ export default {
     }
   },
   STAT_ORDER: ["armor", "resist", "range", "attackSpeed", "damage", "health"],
-  DEFAULT_ABILITY: {
+  NEW_ABILITY: {
     name: "New ability",
     description: "Insert description here",
     cooldown: 10
+  },
+  NEW_CLASS: {
+    name: "New class",
+    bonuses: []
+  },
+  NEW_RACE: {
+    name: "New race",
+    bonuses: []
+  },
+  NEW_BONUS: {
+    text: "(0) New bonus"
   }
 };

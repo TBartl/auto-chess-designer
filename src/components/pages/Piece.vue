@@ -55,6 +55,24 @@
             <h4>{{abilityLabel}}</h4>
             <span class="reveal" @click="onAddAbility">➕</span>
           </div>
+          <div v-for="(ability, index) in piece.abilities" :key="index" class="mt-2">
+            <field-text class="power-title" :obj="ability" model="name"></field-text>
+            <field-text class="power-description" :obj="ability" model="description"></field-text>
+            <div class="d-flex align-items-center">
+              <span class="field-label">Cooldown:</span>
+              <field-numerical :obj="ability" model="cooldown"></field-numerical>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel p-3 mt-3">
+          <div class="hover-reveal d-flex align-items-center">
+            <h4>{{classLabel}}</h4>
+            <span class="reveal" @click="onAddClass">➕</span>
+          </div>
+          <div v-for="(clas, index) in piece.classes" :key="index" class="mt-2">
+            <!-- <field-text class="power-title" :obj="clas" model="class"></field-text> -->
+          </div>
         </div>
       </div>
     </div>
@@ -86,14 +104,32 @@ export default {
     },
     abilityLabel() {
       var numAbilities = this.piece.abilities.length;
-      if (numAbilities == 0) return "No abilities";
-      if (numAbilities > 1) return "Abilities";
-      return "Ability";
+      if (numAbilities == 0) return "No ability";
+      if (numAbilities == 1) return "Ability";
+      return "Abilities";
+    },
+    classLabel() {
+      var numClasses = this.piece.classes.length;
+      if (numClasses == 0) return "No class";
+      if (numClasses == 1) return "Class";
+      return "Classes";
+    },
+    raceLabel() {
+      var numClasses = this.piece.races.length;
+      if (numClasses == 0) return "No race";
+      if (numClasses == 1) return "Race";
+      return "Races";
     }
   },
   methods: {
     onAddAbility() {
-      this.piece.abilities.push(CONSTANTS.DEFAULT_ABILITY);
+      this.piece.abilities.push(CONSTANTS.NEW_ABILITY);
+    },
+    onAddClass() {
+      this.piece.classes.push(undefined);
+    },
+    onAddRace() {
+      this.piece.races.push(undefined);
     }
   }
 };
@@ -114,5 +150,14 @@ export default {
 
 .power {
   font-size: 24px;
+}
+
+.power-title {
+  font-weight: bold;
+  display: block;
+}
+.power-description {
+  color: hsla(0, 0%, 100%, 0.7);
+  display: block;
 }
 </style>
