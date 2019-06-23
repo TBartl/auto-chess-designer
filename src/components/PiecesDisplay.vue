@@ -3,7 +3,7 @@
   <div class=" m-2 select position-relative hover-reveal" 
       v-for="(piece, index) in pieces" :key="index">
     <router-link :to="`/piece/${piece.name}`" class="d-flex align-items-center flex-column">
-      <img :src="piece.image" :alt="piece.name">
+      <img :src="piece.image" :alt="piece.name" :style="getImageStyle(piece)">
       <p>{{piece.name}}</p>
     </router-link>
     <div v-if="hasActions" class="delete-piece reveal" @click="deletePiece(piece)">❌</div>
@@ -22,9 +22,7 @@ export default {
   props: ["hasActions", "pieces"],
   computed: {
     canCreateNew() {
-      return !this.pieces.find(
-        piece => piece.name == CONSTANTS.NEW_PIECE.name
-      );
+      return !this.pieces.find(piece => piece.name == CONSTANTS.NEW_PIECE.name);
     }
   },
   methods: {
@@ -35,6 +33,13 @@ export default {
     },
     deletePiece(piece) {
       this.pieces.splice(this.pieces.indexOf(piece), 1);
+    },
+    getImageStyle(piece) {
+      var borderColor = CONSTANTS.COST_COLORS["" + piece.cost];
+      if (!borderColor) return {};
+      return {
+        border: "5px solid " + borderColor
+      };
     }
   }
 };

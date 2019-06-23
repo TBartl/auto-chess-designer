@@ -98,7 +98,7 @@
 
         <div class="panel p-3 mt-3">
           <h4>Notes</h4>
-          <field-text class="notes" :obj="piece" model="notes"></field-text>
+          <field-text class="notes w-100" :obj="piece" model="notes"></field-text>
         </div>
       </div>
     </div>
