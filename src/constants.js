@@ -3,6 +3,7 @@ export default {
     name: "New Piece",
     notes: "No notes",
     cost: 1,
+    active: true,
     stats: {
       health: 750,
       armor: 5,
