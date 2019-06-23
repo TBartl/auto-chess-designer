@@ -36,7 +36,7 @@ export default {
       var blob = new Blob([JSON.stringify(this.schema)], {
         type: "text/plain;charset=utf-8"
       });
-      saveAs(blob, "test.json");
+      saveAs(blob, "AutoChessDesignerExport.json");
     },
     onImport() {
       this.$modal.show(ImportModal, {}, { height: "auto" });
