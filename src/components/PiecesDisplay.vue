@@ -7,7 +7,7 @@
         <span class="synergies">{{getSynergyIcons(piece)}}</span>
         <img :src="piece.image" :alt="piece.name" :style="getImageStyle(piece)">
       </div>
-      <p>{{piece.name}}</p>
+      <p class="piece-name">{{piece.name}}</p>
     </router-link>
     <div v-if="hasActions" class="delete-piece reveal" @click="deletePiece(piece)">❌</div>
   </div>
@@ -33,6 +33,8 @@ export default {
       return this.pieces.sort((a, b) => {
         if (a.name == CONSTANTS.NEW_PIECE.name) return 1;
         if (b.name == CONSTANTS.NEW_PIECE.name) return -1;
+        var costDiff = a.cost - b.cost;
+        if (costDiff != 0) return costDiff;
         return a.name.localeCompare(b.name);
       });
     }
@@ -98,5 +100,9 @@ export default {
   color: white !important;
   text-align: center;
   font-size: 14px;
+}
+.piece-name {
+  max-width: 100px;
+  text-align: center;
 }
 </style>

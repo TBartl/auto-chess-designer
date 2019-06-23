@@ -69,7 +69,7 @@
             </div>
             <field-text class="power-description" :obj="ability" model="description"></field-text>
             <div class="d-flex align-items-center">
-              <span class="field-label">Cooldown:</span>
+              <span class="field-label" v-if="ability.cooldown">Cooldown:</span>
               <field-numerical :obj="ability" model="cooldown"></field-numerical>
             </div>
           </div>
@@ -158,7 +158,7 @@ export default {
   },
   methods: {
     onAddAbility() {
-      this.piece.abilities.push(CONSTANTS.NEW_ABILITY);
+      this.piece.abilities.push(JSON.parse(JSON.stringify(CONSTANTS.NEW_ABILITY)));
     },
     onAddSynergy() {
       this.piece.synergies.push(undefined);

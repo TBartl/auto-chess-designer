@@ -16,7 +16,7 @@
           </div>
           
           <div class="hover-reveal d-flex align-items-center">
-            <p class="bonus-text mt-2">Bonuses</p>
+            <p class="bonus-text mt-2">{{getBonusesText(synergy)}}</p>
             <span class="reveal" @click="addBonus(synergy)">➕</span>
           </div>
           
@@ -90,6 +90,11 @@ export default {
         0,
         this.schema.synergies.splice(from, 1)[0]
       );
+    },
+    getBonusesText(synergy) {
+      if (synergy.bonuses.length == 0) return "No bonuses";
+      if (synergy.bonuses.length == 1) return "Bonus";
+      return "Bonuses";
     }
   }
 };

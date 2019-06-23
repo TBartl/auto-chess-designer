@@ -36,7 +36,7 @@ export default {
     displayStats() {
       return CONSTANTS.STAT_ORDER.map((stat, index) => {
         var statRange = CONSTANTS.STAT_RANGES[stat];
-        var percent = (this.stats[stat] - statRange.min) / (statRange.max - statRange.min);
+        var percent = Math.max(0,(this.stats[stat] - statRange.min) / (statRange.max - statRange.min));
 
         var angle = Math.PI * 2 / CONSTANTS.STAT_ORDER.length * index;
         var x = Math.sin(angle);

@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <router-view class="mt-4"></router-view>
+    <router-view class="mt-4" :key="$route.fullPath"></router-view>
     <modals-container></modals-container>
   </div>
 </template>
