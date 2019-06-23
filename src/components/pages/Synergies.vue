@@ -7,7 +7,9 @@
         </div>
       </div>
       <div class="col-md-6" v-for="(synergy, index) in schema.synergies" :key="index">
-        <div class="panel mt-3 p-3">
+        <div class="panel mt-3 p-3 position-relative">
+          <div v-if="checkShowArrow(synergy, 'left')" @click="moveSynergy(synergy, 'left')" class="arrow left" >⬅</div>
+          <div v-if="checkShowArrow(synergy, 'right')" @click="moveSynergy(synergy, 'right')" class="arrow right" >➡</div>
           <div class="hover-reveal flex align-items-center">
             <field-text class="synergy-title" :obj="synergy" model="name"></field-text>
             <span class="reveal delete" @click="deleteSynergy(synergy)">❌</span>
@@ -68,7 +70,26 @@ export default {
       synergy.bonuses.splice(synergy.bonuses.indexOf(bonus), 1);
     },
     getSynergyPieces(synergy) {
-      return this.schema.pieces.filter(piece => piece.synergies.includes(synergy.id));
+      return this.schema.pieces.filter(piece =>
+        piece.synergies.includes(synergy.id)
+      );
+    },
+    checkShowArrow(synergy, dir) {
+      var index = this.schema.synergies.indexOf(synergy);
+      if (dir == "left") {
+        return index != 0;
+      } else {
+        return index != this.schema.synergies.length - 1;
+      }
+    },
+    moveSynergy(synergy, dir) {
+      var from = this.schema.synergies.indexOf(synergy);
+      var to = dir == "left" ? from - 1 : from + 1;
+      this.schema.synergies.splice(
+        to,
+        0,
+        this.schema.synergies.splice(from, 1)[0]
+      );
     }
   }
 };
@@ -85,5 +106,21 @@ export default {
 .delete {
   position: relative;
   right: -20px !important;
+}
+.arrow {
+  position: absolute;
+  top: -2px;
+  opacity: 0.05;
+  transition: opacity 0.15s;
+}
+.arrow.left {
+  left: 5px;
+}
+.arrow.right {
+  right: 5px;
+}
+.arrow:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 </style>

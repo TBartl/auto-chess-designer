@@ -71,7 +71,7 @@ export default {
   opacity: 0.6;
   font-size: 20px;
   margin: 0px 28px;
-  transition: opacity 0.1s;
+  transition: opacity 0.15s;
 }
 .header a:hover {
   opacity: 1;
