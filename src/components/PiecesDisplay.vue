@@ -1,7 +1,7 @@
 <template>
 <div class="inset-sub-panel d-flex flex-wrap">
   <div class=" m-2 select position-relative hover-reveal" 
-      v-for="(piece, index) in pieces" :key="index">
+      v-for="(piece, index) in sortedPieces" :key="index">
     <router-link :to="`/piece/${piece.name}`" class="d-flex align-items-center flex-column">
       <img :src="piece.image" :alt="piece.name" :style="getImageStyle(piece)">
       <p>{{piece.name}}</p>
@@ -23,6 +23,13 @@ export default {
   computed: {
     canCreateNew() {
       return !this.pieces.find(piece => piece.name == CONSTANTS.NEW_PIECE.name);
+    },
+    sortedPieces() {
+      return this.pieces.sort((a, b) => {
+        if (a.name == CONSTANTS.NEW_PIECE.name) return 1;
+        if (b.name == CONSTANTS.NEW_PIECE.name) return -1;
+        return a.name.localeCompare(b.name);
+      });
     }
   },
   methods: {
