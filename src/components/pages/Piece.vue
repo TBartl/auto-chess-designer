@@ -3,19 +3,13 @@
     <div class="row">
       <div class="col-md-3">
         <div class="panel p-3 d-flex flex-column align-items-center">
-          <div class="position-relative piece-image-container mb-2" @click="uploadImage">
-            <div class="upload-image w-100 h-100 align-items-center flex-column position-absolute justify-content-center">
-              <h2>📁</h2>
-              <h5>Upload</h5>
-            </div>
-            <img class="piece-image" :src="piece.image" :alt="piece.name">
-          </div>
+					<image-with-upload class="piece-image" :obj="piece" :model="'image'" />
           <field-text class="piece-title" :obj="piece" model="name"></field-text>
         </div>        
         <div class="panel p-3 my-3">
           <div class="d-flex align-items-center">
             <span class="field-label">Cost:</span>
-            <field-numerical :obj="piece" model="cost"></field-numerical>
+            <field-text :obj="piece" model="cost"></field-text>
           </div>
         </div>
         <div class="panel p-3 my-3 d-flex flex-column">
@@ -23,35 +17,41 @@
           
           <div class="d-flex align-items-center">
             <span class="field-label">Health:</span>
-            <field-numerical :obj="piece.stats" model="health"></field-numerical>
+            <field-text :obj="piece.stats" model="health"></field-text>
+          </div>
+					
+					<div class="d-flex align-items-center">
+            <span class="field-label">Move Delay:</span>
+            <field-text :obj="piece.stats" model="moveDelay"></field-text>
           </div>
           
           <div class="d-flex align-items-center">
-            <span class="field-label">Armor:</span>
-            <field-numerical :obj="piece.stats" model="armor"></field-numerical>
-          </div>
-          
-          <div class="d-flex align-items-center">
-            <span class="field-label">Resist:</span>
-            <field-numerical :obj="piece.stats" model="resist"></field-numerical>
-          </div>
-          
-          <div class="d-flex align-items-center">
-            <span class="field-label">Damage:</span>
-            <field-numerical :obj="piece.stats" model="damage"></field-numerical>
-          </div>
-          
-          <div class="d-flex align-items-center">
-            <span class="field-label">Attack Speed:</span>
-            <field-numerical :obj="piece.stats" model="attackSpeed"></field-numerical>
+            <span class="field-label">Attack Delay:</span>
+            <field-text :obj="piece.stats" model="attackDelay"></field-text>
           </div>
 
-          <div class="d-flex align-items-center">
+					<div class="d-flex align-items-center">
+            <span class="field-label">Base DMG:</span>
+            <field-text :obj="piece.stats" model="baseDMG"></field-text>
+          </div>
+
+					<div class="d-flex align-items-center">
+            <span class="field-label">Knock DMG:</span>
+            <field-text :obj="piece.stats" model="knockDMG"></field-text>
+          </div>
+
+					<div class="d-flex align-items-center">
             <span class="field-label">Range:</span>
-            <field-numerical :obj="piece.stats" model="range"></field-numerical>
+            <field-text :obj="piece.stats" model="range"></field-text>
           </div>
 
-          <piece-stat-graph class="mt-3" :stats="piece.stats"></piece-stat-graph>
+					<div class="d-flex align-items-center">
+            <span class="field-label">Piercing:</span>
+            <field-text :obj="piece.stats" model="piercing"></field-text>
+          </div>
+          
+
+          <!-- <piece-stat-graph class="mt-3" :stats="piece.stats"></piece-stat-graph> -->
           <p v-if="isDefaultStats" class="default-stat-warning">! WARNING: DEFAULT STATS !</p>
         </div>
       </div>
@@ -61,17 +61,21 @@
             <h4>{{abilityLabel}}</h4>
             <span class="reveal" @click="onAddAbility">➕</span>
           </div>
-          <div v-for="(ability, index) in piece.abilities" :key="index" class="mt-2">
-            
-            <div class="hover-reveal">
-              <field-text class="power-title d-inline-block" :obj="ability" model="name"></field-text>
-              <span class="reveal delete" @click="deleteAbility(ability)">❌</span>
-            </div>
-            <field-text class="power-description" :obj="ability" model="description"></field-text>
-            <div class="d-flex align-items-center">
-              <span class="field-label" v-if="ability.cooldown">Cooldown:</span>
-              <field-numerical :obj="ability" model="cooldown"></field-numerical>
-            </div>
+          <div v-for="(ability, index) in piece.abilities" :key="index" class="mt-2 d-flex flex-row ">
+            <!-- <div>
+							<image-with-upload :obj="ability" :model="'image'" class="ability-image mr-2"/>
+						</div> -->
+						<div>
+							<div class="hover-reveal">
+								<field-text class="power-title d-inline-block" :obj="ability" model="name"></field-text>
+								<span class="reveal delete" @click="deleteAbility(ability)">❌</span>
+							</div>
+							<field-text class="power-description" :obj="ability" model="description"></field-text>
+							<div class="d-flex align-items-center">
+								<span class="field-label" v-if="ability.cooldown">Cooldown:</span>
+								<field-numerical :obj="ability" model="cooldown"></field-numerical>
+							</div>
+						</div>            
           </div>
         </div>
 
@@ -113,7 +117,7 @@ import FieldNumerical from "@/components/FieldNumerical";
 import FieldSelect from "@/components/FieldSelect";
 import PieceStatGraph from "@/components/PieceStatGraph";
 import PiecesDisplay from "@/components/PiecesDisplay";
-import UploadImageModal from "@/components/UploadImageModal";
+import ImageWithUpload from "@/components/ImageWithUpload";
 import CONSTANTS from "@/constants";
 export default {
   components: {
@@ -121,7 +125,8 @@ export default {
     FieldNumerical,
     FieldSelect,
     PieceStatGraph,
-    PiecesDisplay
+		PiecesDisplay,
+		ImageWithUpload
   },
   data() {
     var name = this.$route.params.name;
@@ -178,24 +183,22 @@ export default {
       return this.schema.pieces
         .filter(piece => piece.synergies.includes(synergyID))
         .filter(piece => piece.id != this.id);
-    },
-    uploadImage() {
-      this.$modal.show(
-        UploadImageModal,
-        { piece: this.piece },
-        { height: "auto" }
-      );
     }
   }
 };
 </script>
 
 <style scoped>
+/* TODO */
 .piece-image {
   width: 100%;
   max-width: 256px;
   max-height: 256px;
-  border-radius: 50%;
+}
+.ability-image {
+  width: 100%;
+  max-width: 100px;
+  max-height: 100px;
 }
 .piece-title {
   font-size: 24px;
@@ -246,18 +249,4 @@ hr {
   font-size: 12px;
 }
 
-.upload-image {
-  display: none;
-  background: hsla(0, 0%, 0%, 0.75);
-  border-radius: 100%;
-}
-.piece-image-container:hover {
-  cursor: pointer;
-}
-.piece-image-container:hover .upload-image {
-  display: flex;
-}
-.piece-image-container:hover .upload-image {
-  display: flex;
-}
 </style>

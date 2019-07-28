@@ -10,7 +10,7 @@
 <script>
 import Vue from "vue";
 export default {
-  props: ["piece"],
+  props: ["obj", "model"],
   methods: {
     onFileChange(e) {
       var files = e.target.files || e.dataTransfer.files;
@@ -36,7 +36,7 @@ export default {
         //Most browsers support an extra option for: toDataURL(mime type, quality) where quality = 0-1 double.
         //This is not available through this java library but might work with elemental version?
         var tempStr = canvasTmp.toDataURL("image/jpeg", 0.7);
-        this.piece.image = tempStr;
+        this.obj[this.model] = tempStr;
         this.$emit("close");
       };
       imageElement.src = image;
