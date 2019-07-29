@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="23.506014mm"
+   height="5.274847mm"
+   viewBox="0 0 23.506014 5.274847"
+   version="1.1"
+   id="svg1464"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs1458" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="16.013703"
+     inkscape:cy="-26.351295"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata1461">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(322.44943,-23.731624)">
+    <g
+       id="g4914"
+       transform="matrix(0.631586,0,0,0.631586,-363.2846,132.5947)"
+       inkscape:export-filename="C:\Users\Thomas\Desktop\Projects\auto-chess-designer\src\assets\logo.png"
+       inkscape:export-xdpi="192.34236"
+       inkscape:export-ydpi="192.34236">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4628-5-4-5"
+         d="m 67.054344,-172.27893 a 1.5189891,1.5189891 0 0 0 -1.518672,1.51907 1.5189891,1.5189891 0 0 0 0.729043,1.29519 c 4.5e-5,0.004 -4.2e-5,0.01 0,0.0141 a 1.9620774,1.2636344 0 0 0 -1.134693,0.90999 h 1.126668 c -0.03123,0.94132 -0.148587,1.84525 -0.496328,2.64896 h -0.09429 c -0.447955,0 -0.808487,0.22195 -0.808487,0.49752 0,0.11661 0.06732,0.22192 0.17574,0.30655 -0.228554,0.0979 -0.378365,0.26064 -0.378365,0.44577 v 0.40204 c 0,0.0782 0.063,0.14124 0.141234,0.14124 h 0.741884 3.032529 0.741884 c 0.07825,0 0.141235,-0.0629 0.141235,-0.14124 v -0.40204 c 0,-0.185 -0.149699,-0.34735 -0.377964,-0.44537 0.108439,-0.0846 0.175741,-0.19033 0.175741,-0.30695 0,-0.27557 -0.360531,-0.49752 -0.808487,-0.49752 h -0.08145 c -0.3243,-0.81577 -0.429589,-1.71894 -0.468239,-2.64896 h 1.084135 a 1.9620774,1.2636344 0 0 0 -1.106204,-0.90117 c -1.6e-4,-0.0126 -2.44e-4,-0.0251 -3.97e-4,-0.0377 a 1.5189891,1.5189891 0 0 0 0.702559,-1.28033 1.5189891,1.5189891 0 0 0 -1.519075,-1.51908 z"
+         style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.30814812;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text4573-2-5"
+         y="-168.93492"
+         x="70.892845"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.62105703px;line-height:1.04999995;font-family:Tahoma;-inkscape-font-specification:Tahoma;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.24017899;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           id="tspan4812-7"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:1.04999995;font-family:Tahoma;-inkscape-font-specification:Tahoma;letter-spacing:0.15000878px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.24017899;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="-168.93492"
+           x="70.892845"
+           sodipodi:role="line">AUTO CHESS</tspan><tspan
+           id="tspan4810-6"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:1.04999995;font-family:Tahoma;-inkscape-font-specification:Tahoma;letter-spacing:0.8802402px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.24017899;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="-164.08281"
+           x="70.892845"
+           sodipodi:role="line">DESIGNER</tspan></text>
+    </g>
+  </g>
+</svg>
